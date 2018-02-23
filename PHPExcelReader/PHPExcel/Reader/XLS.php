@@ -81,8 +81,10 @@ class PHPExcel_Reader_XLS implements Iterator, Countable {
 
 		$this->index++;
 		$cell = $this->handle->getCell();
-		for($i = 0; $i < $this->sheetInfo['totalColumns']; $i++) {
-			$this->currentRow[$i] = isset($cell[$i]) ? $cell[$i] : '';
+		if ($cell) {
+			for($i = 0; $i < $this->sheetInfo['totalColumns']; $i++) {
+				$this->currentRow[$i] = isset($cell[$i]) ? $cell[$i] : '';
+			}
 		}
 
 		return $this->currentRow;
